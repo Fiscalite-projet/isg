@@ -1,16 +1,17 @@
-const express = require("express");
+const express = require('express');
 const app = express();
-const PORT = 5000;
+const http = require('http').Server(app);
 
-// Middleware to parse JSON
+const cors = require('cors');
+const userApi = require('./routes/user');
+require('./connect');
+
 app.use(express.json());
+app.use(cors());
+app.use('/user', userApi);
 
-// Basic route
-app.get("/", (req, res) => {
-    res.send("Hello, Express!");
-});
+const server = http.listen(5000, () => {
+    console.log('Le serveur est en cours d\'exécution sur le port 5000');
+  });
 
-// Start the server
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});
+  module.exports = { app}
