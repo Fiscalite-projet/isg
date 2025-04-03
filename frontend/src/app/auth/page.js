@@ -1,12 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation"; // Importez à partir de 'next/navigation'
 
 export default function Auth() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
+  const router = useRouter(); // Assurez-vous que 'useRouter' vient de 'next/navigation'
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -17,6 +19,14 @@ export default function Auth() {
     });
     const data = await response.json();
     setMessage(data.message || data.error);
+
+    // Rediriger vers la page de login après une inscription réussie
+    if (response.ok) {
+      // Attendre avant de rediriger pour éviter des problèmes de synchronisation
+      setTimeout(() => {
+        router.push("/login");
+      }, 500); // Attente de 500ms (ajustable)
+    }
   };
 
   return (
