@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 
-// Fonction pour créer un utilisateur (signup)
+// Fonction pour créer un utilisateur 
 exports.signUp = async (req, res) => {
   try {
     const { email, password, confirmPassword } = req.body;
