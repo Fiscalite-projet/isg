@@ -1,5 +1,4 @@
-import Auth from "./auth/page"; // Importer la page auth
-
+import Auth from "./auth/page";
 export default function Home() {
   return (
     <div>
