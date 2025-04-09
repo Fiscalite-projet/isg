@@ -77,7 +77,7 @@ exports.connexion = async (req, res) => {
       { expiresIn: "7d" }
     );
 
-    res.status(200).json({ token });
+    res.status(200).json({ token ,user: { id: user._id, name: user.name, email: user.email }});
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Erreur serveur !" });

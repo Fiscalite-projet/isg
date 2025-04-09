@@ -72,7 +72,7 @@ export default function Steps() {
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-lg">
       <h1 className="text-3xl font-semibold text-center text-blue-600 mb-6">Formulaire de Sélection</h1>
-      {stepsData.formes.length === 0 ? (
+      {stepsData?.formes?.length === 0 ? (
         <p className="text-center text-gray-500">Chargement des données...</p>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -86,7 +86,7 @@ export default function Steps() {
               className="mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="">Sélectionner une forme</option>
-              {stepsData.formes.map((forme) => (
+              {stepsData?.formes.map((forme) => (
                 <option key={forme.name} value={forme.name}>
                   {forme.name}
                 </option>
@@ -94,7 +94,7 @@ export default function Steps() {
             </select>
           </div>
 
-          {formData.forme && (
+          {formData?.forme && (
             <>
               <div className="flex flex-col">
                 <label htmlFor="subType" className="text-sm font-medium text-gray-700">Sous-Type</label>
@@ -106,9 +106,9 @@ export default function Steps() {
                   className="mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   <option value="">Sélectionner un sous-type</option>
-                  {stepsData.formes
-                    .find((forme) => forme.name === formData.forme)
-                    ?.subTypes.map((subType) => (
+                  {stepsData?.formes
+                    .find((forme) => forme.name === formData?.forme)
+                    ?.subTypes?.map((subType) => (
                       <option key={subType.name} value={subType.name}>
                         {subType.name}
                       </option>
@@ -116,7 +116,7 @@ export default function Steps() {
                 </select>
               </div>
 
-              {formData.subType && (
+              {formData?.subType && (
                 <div className="flex flex-col">
                   <label htmlFor="subSubType" className="text-sm font-medium text-gray-700">Sous-Sous-Type</label>
                   <select
@@ -127,7 +127,7 @@ export default function Steps() {
                     className="mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   >
                     <option value="">Sélectionner un sous-sous-type</option>
-                    {stepsData.formes
+                    {stepsData?.formes
                       .find((forme) => forme.name === formData.forme)
                       ?.subTypes.find((subType) => subType.name === formData.subType)
                       ?.subTypes.map((subSubType) => (
@@ -145,13 +145,13 @@ export default function Steps() {
             <label htmlFor="secteur" className="text-sm font-medium text-gray-700">Secteur</label>
             <select
               name="secteur"
-              value={formData.secteur}
+              value={formData?.secteur}
               onChange={handleChange}
               required
               className="mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="">Sélectionner un secteur</option>
-              {stepsData.secteurs.map((secteur) => (
+              {stepsData?.secteurs.map((secteur) => (
                 <option key={secteur.name} value={secteur.name}>
                   {secteur.name}
                 </option>
@@ -163,13 +163,13 @@ export default function Steps() {
             <label htmlFor="zone" className="text-sm font-medium text-gray-700">Zone</label>
             <select
               name="zone"
-              value={formData.zone}
+              value={formData?.zone}
               onChange={handleChange}
               required
               className="mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="">Sélectionner une zone</option>
-              {stepsData.zones.map((zone) => (
+              {stepsData?.zones.map((zone) => (
                 <option key={zone.name} value={zone.name}>
                   {zone.name}
                 </option>
