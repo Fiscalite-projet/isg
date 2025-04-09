@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { signIn } from 'next-auth/react';
+
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -18,19 +20,32 @@ export default function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/user/signin", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
+    const result = await signIn('credentials', {
+      redirect: false,
+      email,
+      password,
     });
-    const data = await response.json();
-    if (response.ok) {
-      setMessage("Connexion réussie !");
-      localStorage.setItem("token", data.token);
-     
+  
+    if (result.ok) {
+      router.push('/steps');
     } else {
-      setMessage(data.message || "Erreur de connexion");
+      setMessage(result.error || "Erreur de connexion");
     }
+
+    // e.preventDefault();
+    // const response = await fetch("http://localhost:5000/user/signin", {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({ email, password }),
+    // });
+    // const data = await response.json();
+    // if (response.ok) {
+    //   setMessage("Connexion réussie !");
+    //   localStorage.setItem("token", data.token);
+     
+    // } else {
+    //   setMessage(data.message || "Erreur de connexion");
+    // }
   };
 
   return (

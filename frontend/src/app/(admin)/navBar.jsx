@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import Image from 'next/image';
+import { signOut } from "next-auth/react";
 
 
 export default function Navbar() {
@@ -107,8 +108,9 @@ export default function Navbar() {
                 </li>
               ))}
               <li className="mt-4">
-                <button className="bg-blue-400 text-white px-8 py-2 rounded-md hover:bg-red-500">
-                  Login
+                <button  onClick={() => signOut({ callbackUrl: '/login' })}
+ className="bg-blue-400 text-white px-8 py-2 rounded-md hover:bg-red-500">
+                   Deconnecter
                 </button>
               </li>
             </ul>
@@ -128,7 +130,8 @@ export default function Navbar() {
                 </li>
               ))}
               <li>
-                <button className="bg-blue-400 hover:bg-blue-500 text-white px-8 py-2 rounded-md">
+                <button onClick={() =>{signOut({ callbackUrl: '/login' })}}
+                 className="bg-blue-400 hover:bg-blue-500 text-white px-8 py-2 rounded-md">
                   Deconnecter
                 </button>
               </li>
