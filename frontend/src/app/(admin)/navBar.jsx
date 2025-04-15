@@ -14,7 +14,7 @@ export default function Navbar() {
   // Navigation items array
   const navItems = [
     { name: "Tableau de bord", href: "/Dashboard" },
-    { name: "Ajouter une entreprise", href: "/admin/steps" },
+    { name: "Ajouter une entreprise", href: "/addcompany" },
     { name: "News", href: "/news" },
     { name: "Contact", href: "/contact" },
   ];

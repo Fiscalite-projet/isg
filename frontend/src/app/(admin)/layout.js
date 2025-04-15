@@ -1,11 +1,12 @@
 import React from 'react';
 import Navbar from './navBar';
+import ClientLayout from '../components/ClientLayout';
 
 
 export default async function AdminLayout({ children }) {
 
   return (
-    
+     <ClientLayout>
         <div className="d-flex flex-column flex-root app-root" id="kt_app_root">
           <div className="app-page flex-column flex-column-fluid" id="kt_app_page">
             <Navbar/>
@@ -18,6 +19,7 @@ export default async function AdminLayout({ children }) {
             </div>
           </div>
         </div>
+        </ClientLayout>
      
   );
 }

@@ -6,6 +6,9 @@ const userSelectionSchema = new mongoose.Schema({
   subSubType: String,
   secteur: String,
   zone: String,
+  isExonorated: Boolean,
+  delegation: String,
+
 }, { timestamps: true });
 
 module.exports = mongoose.model("UserSelection", userSelectionSchema);

@@ -17,13 +17,13 @@ exports.GetSteps = async (req, res) => {
 // Enregistrer le formulaire utilisateur
 exports.AddForm = async (req, res) => {
   try {
-    const { forme, subType, subSubType, secteur, zone } = req.body;
+    const { forme, subType, subSubType, secteur, zone, isExonorated ,delegation } = req.body;
 
-    if (!forme || !subType || !secteur || !zone) {
+    if (!forme || !subType || !secteur || !zone || !delegation || ! (typeof isExonorated === 'boolean')) {
       return res.status(400).json({ message: "Tous les champs obligatoires doivent être remplis." });
     }
 
-    const newSelection = new UserSelection({ forme, subType, subSubType, secteur, zone });
+    const newSelection = new UserSelection({ forme, subType, subSubType, secteur, zone , delegation, isExonorated});
     await newSelection.save();
 
     res.status(201).json({ message: " Formulaire enregistré avec succès !", data: newSelection });

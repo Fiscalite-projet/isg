@@ -13,7 +13,7 @@ const stepSchema = new mongoose.Schema({
     }
   ],
   secteurs: [{ name: String }],
-  zones: [{ name: String }]
+  zones: [{ governorate: String , delegations :[{name: String, isEonored: Boolean }]}]
 });
 
 module.exports = mongoose.model("Steps", stepSchema);
