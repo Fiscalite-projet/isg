@@ -21,16 +21,16 @@ export default function Navbar() {
 
   return (
     <div>
-      <nav className="block w-full max-w-screen px-2 py-4 mx-auto bg-white bg-opacity-90 sticky top-3 shadow lg:px-8 backdrop-blur-lg backdrop-saturate-150 z-[9999]">
-        <div className="container flex flex-wrap items-center justify-between mx-auto text-slate-800">
+      <nav className="block w-full max-w-screen   bg-white bg-opacity-90 sticky top-3 shadow  backdrop-blur-lg backdrop-saturate-150 z-[9999] ">
+        <div className="container flex   flex-wrap items-center justify-between  text-slate-800">
           <Link
             href="/"
-            className=" block cursor-pointer py-1.5 text-red-600 font-bold text-2xl"
+            className=" block cursor-pointer  text-red-600 font-bold text-2xl"
           >
        <Image
       src="/logo.png"
-      width={100}
-      height={100}
+      width={75}
+      height={50}
       alt="Picture of the author"
     />
           </Link>
@@ -131,7 +131,7 @@ export default function Navbar() {
               ))}
               <li>
                 <button onClick={() =>{signOut({ callbackUrl: '/login' })}}
-                 className="bg-blue-400 hover:bg-blue-500 text-white px-8 py-2 rounded-md">
+                 className="bg-blue-700 hover:bg-blue-800 cursor-pointer text-white px-5 py-2 rounded-md hover:bg-blue-800">
                   Deconnecter
                 </button>
               </li>

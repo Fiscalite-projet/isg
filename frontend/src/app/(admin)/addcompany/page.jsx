@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { zone, secteur, form } from './constants';
 import { useNotifications } from 'reapop';
+import { useRouter } from 'next/navigation';
 
 const Formulaire = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +16,7 @@ const Formulaire = () => {
   });
   const [isExoneratedZone, setIsExoneratedZone] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+  const router = useRouter();
 
   const { notify } = useNotifications();
 
@@ -52,7 +54,10 @@ const Formulaire = () => {
       const data = await response.json();
 
       if (response.ok) {
+        if(formData.subSubType='sarl') 
+        { router.push('/sarl');}
         setSubmitStatus('réussi');
+
         notify({ title: 'Succès', message: 'Formulaire soumis avec succès', status: 'success' });
       } else {
         setSubmitStatus('erreur');
@@ -198,7 +203,7 @@ const Formulaire = () => {
         <div className="pt-4">
           <button
             type="submit"
-            className="w-full px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700"
+            className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors"
           >
             Soumettre
           </button>

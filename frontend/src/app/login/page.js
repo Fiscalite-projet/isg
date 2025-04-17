@@ -27,7 +27,7 @@ export default function Login() {
     });
   
     if (result.ok) {
-      router.push('/steps');
+      router.push('/addcompany');
     } else {
       setMessage(result.error || "Erreur de connexion");
     }
