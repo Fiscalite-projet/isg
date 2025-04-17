@@ -35,6 +35,12 @@ exports.AddForm = async (req, res) => {
 
     if (existingForm) {
       // Update the existing form
+      existingForm.forme = forme;
+      existingForm.subType = subType;
+      existingForm.subSubType = subSubType;
+      existingForm.secteur = secteur;
+      existingForm.zone = zone;
+      existingForm.delegation = delegation;
       existingForm.isExonorated = isExonorated;
       await existingForm.save();
       return res.status(200).json({ message: "Formulaire mis à jour avec succès !", data: existingForm });
