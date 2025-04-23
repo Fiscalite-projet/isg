@@ -226,41 +226,88 @@ console.log(formData)
     if (pageNumber > 1) setPageNumber(pageNumber - 1)
   }
 
+  // const handleSubmit = async () => {
+  //   if (!validateCurrentPage()) return
+    
+  //   // Final validation of all form data
+  //   if (!validateAllForm()) {
+  //     alert("Veuillez remplir tous les champs obligatoires avant de soumettre le formulaire.")
+  //     return
+  //   }
+    
+  //   setIsSubmitting(true)
+    
+  //   try {
+  //     const res = await fetch('http://localhost:5000/sarl/addSarl', {
+  //       method: 'POST',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify(formData),
+  //     })
+      
+  //     if (res.ok) {
+  //       alert('Formulaire soumis avec succès!')
+  //       // Optional: Reset form
+  //       setFormData(initialFormState)
+  //       setPageNumber(1)
+  //     } else {
+  //       const errorData = await res.json().catch(() => null)
+  //       alert(`Échec de la soumission: ${errorData?.message || 'Erreur inconnue'}`)
+  //     }
+  //   } catch (error) {
+  //     console.error(error)
+  //     alert('Une erreur est survenue lors de la connexion au serveur.')
+  //   } finally {
+  //     setIsSubmitting(false)
+  //   }
+  // }
   const handleSubmit = async () => {
-    if (!validateCurrentPage()) return
+    if (!validateCurrentPage()) return;
     
     // Final validation of all form data
     if (!validateAllForm()) {
-      alert("Veuillez remplir tous les champs obligatoires avant de soumettre le formulaire.")
-      return
+      alert("Veuillez remplir tous les champs obligatoires avant de soumettre le formulaire.");
+      return;
     }
-    
-    setIsSubmitting(true)
+  
+    setIsSubmitting(true);
     
     try {
+      // Send form data to backend to add SARL
       const res = await fetch('http://localhost:5000/sarl/addSarl', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
-      })
-      
+      });
+  
       if (res.ok) {
-        alert('Formulaire soumis avec succès!')
+        alert('Formulaire soumis avec succès!');
+        
+        // Get the PDF file from the response
+        const blob = await res.blob(); // Assuming the response is the PDF as a blob
+        
+        // Create a link element to trigger the download
+        const link = document.createElement('a');
+        const url = URL.createObjectURL(blob); // Create a URL for the blob
+        link.href = url;
+        link.download = `${formData.nomsociete}_SARL.pdf`; // Set the filename for the download
+        link.click(); // Trigger the download
+        URL.revokeObjectURL(url); // Clean up the URL object after the download
+  
         // Optional: Reset form
-        setFormData(initialFormState)
-        setPageNumber(1)
+        setFormData(initialFormState);
+        setPageNumber(1);
       } else {
-        const errorData = await res.json().catch(() => null)
-        alert(`Échec de la soumission: ${errorData?.message || 'Erreur inconnue'}`)
+        const errorData = await res.json().catch(() => null);
+        alert(`Échec de la soumission: ${errorData?.message || 'Erreur inconnue'}`);
       }
     } catch (error) {
-      console.error(error)
-      alert('Une erreur est survenue lors de la connexion au serveur.')
+      console.error(error);
+      alert('Une erreur est survenue lors de la connexion au serveur.');
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
-
+  };
+  
   // Helper function to show error message
   const ErrorMessage = ({ name }) => {
     return errors[name] ? (
