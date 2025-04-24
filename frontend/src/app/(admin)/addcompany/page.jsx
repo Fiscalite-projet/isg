@@ -54,9 +54,18 @@ const Formulaire = () => {
       const data = await response.json();
 
       if (response.ok) {
-        if(formData.subSubType='sarl') 
-        { router.push('/sarl');}
+        if (formData.subSubType === 'sarl') {
+          router.push('/sarl');
+        } else if (formData.subSubType === 'SA') {
+          router.push('/SA');
+        } else if (formData.subSubType === 'SNC') {
+          router.push('/SNC');
+        } else if (formData.subSubType === 'SCS') {
+          router.push('/SCS');
+        }
+    
         setSubmitStatus('réussi');
+        
 
         notify({ title: 'Succès', message: 'Formulaire soumis avec succès', status: 'success' });
       } else {
