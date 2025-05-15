@@ -1,8 +1,9 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { zone, secteur, form } from './constants';
 import { useNotifications } from 'reapop';
 import { useRouter } from 'next/navigation';
+import ZoneBenefitsNotification from './components/ZoneBenefitsNotification';
 
 const Formulaire = () => {
   const [formData, setFormData] = useState({
@@ -15,10 +16,13 @@ const Formulaire = () => {
     isExonorated : ''
   });
   const [isExoneratedZone, setIsExoneratedZone] = useState(false);
+  const [zoneEX,setZoneEX]=useState('')
   const [submitStatus, setSubmitStatus] = useState(null);
+
   const router = useRouter();
 
   const { notify } = useNotifications();
+ 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,6 +34,10 @@ const Formulaire = () => {
         ?.delegations?.find((d) => d.name === value);
 
       setIsExoneratedZone(selected?.isExonorated || false);
+      if(selected?.isExonorated) {
+        setZoneEX(selected?.zone)
+
+      }
       formData.isExonorated=selected?.isExonorated
     }
   };
@@ -54,7 +62,7 @@ const Formulaire = () => {
       const data = await response.json();
 
       if (response.ok) {
-        if (formData.subSubType === 'sarl') {
+        if (formData.subSubType === 'SARL') {
           router.push('/sarl');
         } else if (formData.subSubType === 'SA') {
           router.push('/SA');
@@ -124,11 +132,9 @@ const Formulaire = () => {
                 </option>
               ))}
             </select>
-            {isExoneratedZone && (
-              <p className="bg-yellow-100 text-red-800 p-3 rounded-md mt-2">
-                Cette zone est une zone d'exonération fiscale.
-              </p>
-            )}
+            {isExoneratedZone && <ZoneBenefitsNotification zoneName={`${zoneEX}`}/>}
+
+           
           </div>
         )}
 
