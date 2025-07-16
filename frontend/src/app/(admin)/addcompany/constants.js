@@ -406,7 +406,6 @@
     {
       name: "Sociétaire",
       subTypes: [
-        { name: "IRPP", subTypes: [{ name: "SNC" }, { name: "SCS" }] },
         { name: "Société des Capitaux", subTypes: [{ name: "SA" }, { name: "z" }] },
         { name: "Société Hybride", subTypes: [{ name: "SARL" }, { name: "SUARL" }] }
       ],
