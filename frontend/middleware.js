@@ -5,7 +5,9 @@ export default withAuth({
     error: '/error',
     reset: '/reset',
     signUp: '/',
-    signIn:'login'
+    signIn:'login',
+    site:'/site'
+    
   },
   secret: process.env.NEXTAUTH_SECRET,
 });

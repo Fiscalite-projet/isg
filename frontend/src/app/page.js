@@ -1,8 +1,13 @@
-import Auth from "./auth/page";
+
+import { Footer } from "./(notAuthentificated)/Footer";
+import { Navbar } from "./(notAuthentificated)/Navbar";
+import HomePage from "./(notAuthentificated)/site/page";
 export default function Home() {
   return (
     <div>
-      <Auth /> {}
+      <Navbar/>
+      <HomePage /> 
+      <Footer/>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import React from 'react';
-import Navbar from './navBar';
+
 import ClientLayout from '../components/ClientLayout';
+import Navbar from './navBar';
 
 
 export default async function AdminLayout({ children }) {
